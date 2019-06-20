@@ -2,9 +2,16 @@ import assert from 'assert';
 import { readFile } from 'fs';
 import { promisify } from 'util';
 import OrderRepresentation from '../src/representation/order-representation';
+import OrderItem from '../src/representation/order-item';
 
 describe('OrderRepresentation', () => {
   it('如果构造 OrderRepresentation 对象，当调用 toString() 方法，则得到期望的结果字符串', async () => {
+    const items = [
+      new OrderItem({productNo: '001001', productName: '世园会五十国钱币册', price: 998.00, amount: 2, subTotal: 1996.00 }),
+      new OrderItem({productNo: '001002', productName: '2019北京世园会纪念银章大全40g', price: 1380.00, amount: 3, subTotal: 4140.00 }),
+      new OrderItem({productNo: '002002', productName: '中国经典钱币套装', price: 1500.00, amount: 1, subTotal: 1500.00 }),
+      new OrderItem({productNo: '002003', productName: '中国银象棋32g', price: 2200.00, amount: 2, subTotal: 4400.00 }),
+    ];
     const data = {
       createTime: new Date(),
       orderId: '0000001',
@@ -18,6 +25,7 @@ describe('OrderRepresentation', () => {
       receivables: 9468.00,
       oldMemberType: '普卡',
       memberPointsIncreased: 9408,
+      orderItems: items
     };
     const orderRepresentation = new OrderRepresentation(data);
     const expectedResult = await promisify(readFile)(`${__dirname}/resources/sample_result.txt`, 'utf8');

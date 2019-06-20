@@ -35,6 +35,12 @@ export default class OrderRepresentation {
     this.payments = payments || [];
   }
 
+  getOrderItemsToString() {
+    return this.items.reduce((accumulator, currentValue) => {
+      return accumulator += currentValue.toString() + '\n';
+    }, '').trim();
+  }
+
   toString() {
     return `
 方鼎银行贵金属购买凭证
@@ -43,10 +49,7 @@ export default class OrderRepresentation {
 客户卡号：${this.memberNo} 会员姓名：${this.memberName} 客户等级：${this.newMemberType}  累计积分：${this.memberPoints}
 
 商品及数量           单价         金额
-(001001)世园会五十国钱币册x 2,998.00,1996.00
-(001002)2019北京世园会纪念银章大全40g x 3, 1380.00,4140.00
-(002002)中国经典钱币套装x 1, 1500.00,1500.00
-(002003)中国银象棋32gx 2, 2200.00,4400.00
+${this.getOrderItemsToString()}
 合计：${this.totalPrice.toFixed(2)}
 
 优惠清单：
