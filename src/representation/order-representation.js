@@ -1,3 +1,5 @@
+import { formatDate } from './utils';
+
 export default class OrderRepresentation {
   /**
    * @param orderId            订单号
@@ -51,7 +53,7 @@ export default class OrderRepresentation {
     return `
 方鼎银行贵金属购买凭证
 
-销售单号：${this.orderId} 日期：2019-11-11 23:00:00
+销售单号：${this.orderId} 日期：${formatDate(this.createTime, 'YYYY-MM-dd HH:mm:ss')}
 客户卡号：${this.memberNo} 会员姓名：${this.memberName} 客户等级：${this.newMemberType}  累计积分：${this.memberPoints}
 
 商品及数量           单价         金额

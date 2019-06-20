@@ -20,7 +20,7 @@ describe('OrderRepresentation', () => {
       new DiscountItem({productNo: '002003', productName: '中国银象棋', discount: -2420.00 }),
     ];
     const data = {
-      createTime: new Date(),
+      createTime: new Date('2019-11-11 23:00:00'),
       orderId: '0000001',
       memberNo: '6236609999',
       memberName: '马丁',
