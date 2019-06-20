@@ -1,8 +1,9 @@
 import assert from 'assert';
 import { readFile } from 'fs';
 import { promisify } from 'util';
-import OrderRepresentation from '../src/representation/order-representation';
 import OrderItem from '../src/representation/order-item';
+import DiscountItem from '../src/representation/discount-item';
+import OrderRepresentation from '../src/representation/order-representation';
 
 describe('OrderRepresentation', () => {
   it('如果构造 OrderRepresentation 对象，当调用 toString() 方法，则得到期望的结果字符串', async () => {
@@ -11,6 +12,12 @@ describe('OrderRepresentation', () => {
       new OrderItem({productNo: '001002', productName: '2019北京世园会纪念银章大全40g', price: 1380.00, amount: 3, subTotal: 4140.00 }),
       new OrderItem({productNo: '002002', productName: '中国经典钱币套装', price: 1500.00, amount: 1, subTotal: 1500.00 }),
       new OrderItem({productNo: '002003', productName: '中国银象棋32g', price: 2200.00, amount: 2, subTotal: 4400.00 }),
+    ];
+
+    const discounts = [
+      new DiscountItem({productNo: '001002', productName: '2019北京世园会纪念银章大全', discount: -138.00 }),
+      new DiscountItem({productNo: '002002', productName: '中国经典钱币套装', discount: -10.00 }),
+      new DiscountItem({productNo: '002003', productName: '中国银象棋', discount: -2420.00 }),
     ];
     const data = {
       createTime: new Date(),
@@ -21,11 +28,12 @@ describe('OrderRepresentation', () => {
       memberPoints: 18268,
       newMemberType: '金卡',
       totalPrice: 12036.00,
-      totalDiscountPrice: 20.0,
+      totalDiscountPrice: 2568.00,
       receivables: 9468.00,
       oldMemberType: '普卡',
       memberPointsIncreased: 9408,
-      orderItems: items
+      orderItems: items,
+      discounts
     };
     const orderRepresentation = new OrderRepresentation(data);
     const expectedResult = await promisify(readFile)(`${__dirname}/resources/sample_result.txt`, 'utf8');
