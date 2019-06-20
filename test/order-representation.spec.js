@@ -1,6 +1,5 @@
 import assert from 'assert';
-import { readFile } from 'fs';
-import { promisify } from 'util';
+import { readFile } from '../src/representation/utils';
 import OrderItem from '../src/representation/order-item';
 import DiscountItem from '../src/representation/discount-item';
 import OrderRepresentation from '../src/representation/order-representation';
@@ -36,7 +35,7 @@ describe('OrderRepresentation', () => {
       discounts
     };
     const orderRepresentation = new OrderRepresentation(data);
-    const expectedResult = await promisify(readFile)(`${__dirname}/resources/sample_result.txt`, 'utf8');
+    const expectedResult = await readFile(`${__dirname}/resources/sample_result.txt`, 'utf8');
     assert.equal(orderRepresentation.toString(), expectedResult.trim());
   });
 });

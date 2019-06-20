@@ -1,3 +1,6 @@
+import fs from 'fs';
+import { promisify } from 'util';
+
 // 格式化日期
 export const formatDate = (date, formatStr) => {
 	let str = formatStr;
@@ -17,3 +20,5 @@ export const formatDate = (date, formatStr) => {
 	str = str.replace(/s|S/g, date.getSeconds());
 	return str;
 };
+
+export const readFile = promisify(fs.readFile);
