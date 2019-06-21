@@ -12,7 +12,7 @@ describe('OrderApp', () => {
   parameters.forEach((param) => {
     it(`如果输入的文件为${basename(param.inputFile)}，当调用 OrderApp.checkout() 方法，则得到期望的结果${basename(param.outputFile)} 文件中的字符串`, async () => {
       const inputStr = await readFile(param.inputFile, 'utf8');
-      const actualRepresentation = OrderApp.checkout(JSON.parse(inputStr));
+      const actualRepresentation = OrderApp.checkout(inputStr);
 
       const expectedResult = await readFile(param.outputFile, 'utf8');
       assert.equal(actualRepresentation, expectedResult);
