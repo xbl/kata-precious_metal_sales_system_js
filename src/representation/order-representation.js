@@ -38,15 +38,15 @@ export default class OrderRepresentation {
   }
 
   getItemsToString() {
-    return this.items.reduce((accumulator, currentValue) => {
-      return accumulator += currentValue.toString() + '\n';
-    }, '').trim();
+    return this.items.map((currentValue) => {
+      return currentValue.toString();
+    }).join('\n');
   }
 
   getDiscountsToString() {
-    return this.discounts.reduce((accumulator, currentValue) => {
-      return accumulator += currentValue.toString() + '\n';
-    }, '').trim();
+    return this.discounts.map((currentValue) => {
+      return currentValue.toString();
+    }).join('\n');
   }
 
   toString() {
@@ -54,7 +54,7 @@ export default class OrderRepresentation {
 方鼎银行贵金属购买凭证
 
 销售单号：${this.orderId} 日期：${formatDate(this.createTime, 'YYYY-MM-dd HH:mm:ss')}
-客户卡号：${this.memberNo} 会员姓名：${this.memberName} 客户等级：${this.newMemberType}  累计积分：${this.memberPoints}
+客户卡号：${this.memberNo} 会员姓名：${this.memberName} 客户等级：${this.newMemberType} 累计积分：${this.memberPoints}
 
 商品及数量           单价         金额
 ${this.getItemsToString()}
@@ -66,8 +66,9 @@ ${this.getDiscountsToString()}
 
 应收合计：${this.receivables.toFixed(2)}
 收款：
- 9折打折券 x 1
- 账户余额：9408.00元
+ 9折券
+ 账户余额：11612.00
+
 客户等级与积分：
  新增积分：${this.memberPointsIncreased}
  恭喜您升级为金卡客户！

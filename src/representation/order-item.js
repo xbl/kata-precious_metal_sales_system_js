@@ -17,6 +17,6 @@ export default class OrderItem {
   }
 
   toString() {
-    return `(${this.productNo})${this.productName} x ${this.amount}, ${this.price.toFixed(2)},${this.subTotal.toFixed(2)}`;
+    return `(${this.productNo})${this.productName}x${this.amount}, ${this.price.toFixed(2)}, ${this.subTotal.toFixed(2)}`;
   }
 }

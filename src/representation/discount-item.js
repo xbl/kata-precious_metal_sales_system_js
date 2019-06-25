@@ -12,6 +12,6 @@ export default class DiscountItem {
   }
 
   toString() {
-    return `(${this.productNo})${this.productName}:${this.discount.toFixed(2)}`;
+    return ` (${this.productNo})${this.productName}: ${this.discount.toFixed(2)}`;
   }
 }
