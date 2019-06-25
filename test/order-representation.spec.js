@@ -17,6 +17,13 @@ describe('OrderRepresentation', () => {
       new DiscountItem({productNo: '001002', productName: '2019北京世园会纪念银章大全40g', discount: -414.00 }),
       new DiscountItem({productNo: '002002', productName: '中国经典钱币套装', discount: -10.00 }),
     ];
+
+    const payments = [
+      {
+        type: '账户余额',
+        amount: 11612.00
+      }
+    ];
     const data = {
       createTime: new Date('2019-11-11 23:00:00'),
       orderId: '0000001',
@@ -31,7 +38,9 @@ describe('OrderRepresentation', () => {
       oldMemberType: '普卡',
       memberPointsIncreased: 11612,
       orderItems: items,
-      discounts
+      discounts,
+      payments,
+      discountCards: ['9折券']
     };
     const orderRepresentation = new OrderRepresentation(data);
     const expectedResult = await readFile(`${__dirname}/resources/sample_result.txt`, 'utf8');

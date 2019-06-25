@@ -16,10 +16,11 @@ export default class OrderRepresentation {
    * @param totalDiscountPrice 优惠总金额
    * @param receivables        应收金额
    * @param payments           付款记录
+   * @param discountCards      付款使用的打折券
    */
   constructor({orderId, createTime,
     memberNo, memberName, oldMemberType, newMemberType, memberPointsIncreased, memberPoints,
-    orderItems, totalPrice, discounts, totalDiscountPrice, receivables, payments}) {
+    orderItems, totalPrice, discounts, totalDiscountPrice, receivables, payments, discountCards}) {
 
     this.orderId = orderId;
     this.createTime = createTime;
@@ -35,6 +36,7 @@ export default class OrderRepresentation {
     this.totalDiscountPrice = totalDiscountPrice || 0;
     this.receivables = receivables || 0;
     this.payments = payments || [];
+    this.discountCards = discountCards || [];
   }
 
   getItemsToString() {
@@ -46,6 +48,12 @@ export default class OrderRepresentation {
   getDiscountsToString() {
     return this.discounts.map((currentValue) => {
       return currentValue.toString();
+    }).join('\n');
+  }
+
+  getPaymentsToString() {
+    return this.payments.map(payment => {
+      return `${payment.type}：${payment.amount.toFixed(2)}`
     }).join('\n');
   }
 
@@ -66,8 +74,8 @@ ${this.getDiscountsToString()}
 
 应收合计：${this.receivables.toFixed(2)}
 收款：
- 9折券
- 账户余额：11612.00
+ ${this.discountCards.join('\n')}
+ ${this.getPaymentsToString()}
 
 客户等级与积分：
  新增积分：${this.memberPointsIncreased}
