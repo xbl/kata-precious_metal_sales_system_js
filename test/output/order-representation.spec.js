@@ -1,8 +1,10 @@
+import path from 'path';
 import assert from 'assert';
-import { readFile } from '../src/output/utils';
-import OrderItem from '../src/output/order-item';
-import DiscountItem from '../src/output/discount-item';
-import OrderRepresentation from '../src/output/order-representation';
+import { readFile } from '../../src/output/utils';
+import OrderItem from '../../src/output/order-item';
+import DiscountItem from '../../src/output/discount-item';
+import OrderRepresentation from '../../src/output/order-representation';
+
 
 describe('OrderRepresentation', () => {
   it('如果构造 OrderRepresentation 对象，当调用 toString() 方法，则得到期望的结果字符串', async () => {
@@ -43,7 +45,7 @@ describe('OrderRepresentation', () => {
       discountCards: ['9折券']
     };
     const orderRepresentation = new OrderRepresentation(data);
-    const expectedResult = await readFile(`${__dirname}/resources/sample_result.txt`, 'utf8');
+    const expectedResult = await readFile(path.join(__dirname, '../resources/sample_result.txt'), 'utf8');
     assert.equal(orderRepresentation.toString(), expectedResult.trim());
   });
 });
