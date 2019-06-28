@@ -3,6 +3,7 @@ import { promisify } from 'util';
 
 // 格式化日期
 export const formatDate = (date, formatStr) => {
+  if (!date) return formatStr;
 	let str = formatStr;
 	const weeks = ['日', '一', '二', '三', '四', '五', '六'];
 	str = str.replace(/yyyy|YYYY/, date.getFullYear());

@@ -15,7 +15,7 @@ describe('OrderApp', () => {
       const actualRepresentation = OrderApp.checkout(inputStr);
 
       const expectedResult = await readFile(param.outputFile, 'utf8');
-      assert.equal(actualRepresentation, expectedResult);
+      assert.equal(actualRepresentation.toString(), expectedResult);
     });
   });
 });
