@@ -1,8 +1,8 @@
 import OrderRepresentation from './output/order-representation';
 export default class OrderApp {
 
-  static checkout(orderCommand) {
+  checkout(orderCommand) {
     // TODO: 请完成需求指定的功能
-    return new OrderRepresentation({}).toString();
+    return (new OrderRepresentation({})).toString();
   }
 }

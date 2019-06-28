@@ -28,8 +28,8 @@
 为了提升贵金属销售业绩和市场份额，该商业银行制定了开门红促销活动。
 
 * 满减（仅对满减商品使用）
-    * 满2000元减30
-    * 满1000元减10
+    * 每满2000元减30
+    * 每满1000元减10
     * 第3件半价（买3件，其中1件半价）
     * 满3送1（买4件，其中1件免费）
 
@@ -112,8 +112,8 @@
 合计：12036.00
 
 优惠清单：#如果有优惠，则打印
-(001002)2019北京世园会纪念银章大全:-414.00
-(002002)中国经典钱币套装:-10.00
+(001002)2019北京世园会纪念银章大全: -414.00
+(002002)中国经典钱币套装: -10.00
 优惠合计：424.00 #如果有优惠，则打印
 
 应收合计：11612.00
@@ -134,9 +134,9 @@ src/order-app.js:
 ```javascript
 export default class OrderApp {
 
-  static checkout(orderCommand) {
+  checkout(orderCommand) {
     // TODO: 请完成需求指定的功能
-    return new OrderRepresentation({}).toString();
+    return (new OrderRepresentation({})).toString();
   }
 }
 
@@ -205,9 +205,6 @@ npm test
 # 或者
 yarn test
 
-# watch 模式
-npm run test
-# 或者
-yarn run test:watch
 ```
+
 

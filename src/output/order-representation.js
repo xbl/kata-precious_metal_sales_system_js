@@ -43,46 +43,63 @@ export default class OrderRepresentation {
   }
 
   getItemsToString() {
-    return this.items.map((currentValue) => {
-      return currentValue.toString();
-    }).join('\n');
+    const content = this.items.map((currentValue) => currentValue.toString()).join('\n');
+    if (!content) return '';
+    return `商品及数量           单价         金额
+${content}
+合计：${this.totalPrice.toFixed(2)}`;
   }
 
   getDiscountsToString() {
-    return this.discounts.map((currentValue) => {
-      return currentValue.toString();
-    }).join('\n');
+    const content = this.discounts.map((currentValue) => currentValue.toString()).join('\n');
+    if (!content) return '';
+    return `
+优惠清单：
+${content}
+优惠合计：${this.totalDiscountPrice.toFixed(2)}
+`;
   }
 
   getPaymentsToString() {
-    return this.payments.map(payment => {
-      return `${payment.type}：${payment.amount.toFixed(2)}`
-    }).join('\n');
+    let result = `应收合计：${this.receivables.toFixed(2)}\n收款：\n`;
+    if (this.discountCards && this.discountCards.length) {
+      result += this.discountCards.map(_ => ' ' + _ + '\n');
+    }
+
+    let content = '';
+    if (this.payments && this.payments.length) {
+      content = this.payments.map(payment => {
+        return ` ${payment.type}：${payment.amount.toFixed(2)}`;
+      }).join('\n');
+    }
+    result += content;
+    return result;
   }
 
-  toString() {
+  getMemberChangeInfo() {
+    if (!this.memberPointsIncreased) return '';
+    return `
+客户等级与积分：
+ 新增积分：${this.memberPointsIncreased}
+ ${this.oldMemberType !== this.newMemberType ? `恭喜您升级为${this.newMemberType}客户！`: ''}`;
+  }
+
+  getReportTitle() {
     return `
 方鼎银行贵金属购买凭证
 
 销售单号：${this.orderId} 日期：${formatDate(this.createTime, 'YYYY-MM-dd HH:mm:ss')}
 客户卡号：${this.memberNo} 会员姓名：${this.memberName} 客户等级：${this.newMemberType} 累计积分：${this.memberPoints}
+`;
+  }
 
-商品及数量           单价         金额
+  toString() {
+    return `
+${this.getReportTitle()}
 ${this.getItemsToString()}
-合计：${this.totalPrice.toFixed(2)}
-
-优惠清单：
 ${this.getDiscountsToString()}
-优惠合计：${this.totalDiscountPrice.toFixed(2)}
-
-应收合计：${this.receivables.toFixed(2)}
-收款：
- ${this.discountCards.join('\n')}
- ${this.getPaymentsToString()}
-
-客户等级与积分：
- 新增积分：${this.memberPointsIncreased}
- 恭喜您升级为金卡客户！
+${this.getPaymentsToString()}
+${this.getMemberChangeInfo()}
 `.trim();
   }
 }

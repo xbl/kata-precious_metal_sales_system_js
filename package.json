@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require @babel/register './test/**/*.js'",
-    "test:watch": "mocha --require @babel/register './test/**/*.js' --watch"
+    "test": "mocha --require @babel/register './test/**/*.js'"
   },
   "keywords": [],
   "author": "",
