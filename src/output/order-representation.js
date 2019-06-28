@@ -1,5 +1,8 @@
 import { formatDate } from './utils';
 
+/**
+ * 用于打印的销售凭证
+ */
 export default class OrderRepresentation {
   /**
    * @param orderId            订单号

@@ -1,7 +1,7 @@
 import assert from 'assert';
 import { basename, sep } from 'path';
 import OrderApp from '../src/order-app';
-import { readFile } from '../src/representation/utils';
+import { readFile } from '../src/output/utils';
 
 describe('OrderApp', () => {
   const resourcesDir = `${__dirname}${sep}resources${sep}`;
@@ -15,7 +15,7 @@ describe('OrderApp', () => {
       const actualRepresentation = OrderApp.checkout(inputStr);
 
       const expectedResult = await readFile(param.outputFile, 'utf8');
-      assert.equal(actualRepresentation.toString(), expectedResult);
+      assert.equal(actualRepresentation, expectedResult);
     });
   });
 });

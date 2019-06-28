@@ -1,8 +1,8 @@
 import assert from 'assert';
-import { readFile } from '../src/representation/utils';
-import OrderItem from '../src/representation/order-item';
-import DiscountItem from '../src/representation/discount-item';
-import OrderRepresentation from '../src/representation/order-representation';
+import { readFile } from '../src/output/utils';
+import OrderItem from '../src/output/order-item';
+import DiscountItem from '../src/output/discount-item';
+import OrderRepresentation from '../src/output/order-representation';
 
 describe('OrderRepresentation', () => {
   it('如果构造 OrderRepresentation 对象，当调用 toString() 方法，则得到期望的结果字符串', async () => {
