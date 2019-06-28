@@ -129,10 +129,19 @@
 ## 程序要求
 请编写一个程序用于打印销售凭证，API如下：
 
-```
-OrderRepresentation checkout(String orderCommand):
-    * 输出：返回待打印的字符串
-    * 输入：OrderCommand是一个JSON字符串，内容如下：
+src/order-app.js:
+
+```javascript
+export default class OrderApp {
+
+  static checkout(orderCommand) {
+    // TODO: 请完成需求指定的功能
+    return new OrderRepresentation({}).toString();
+  }
+}
+
+* 输出：返回待打印的订单凭证字符串
+* 输入：OrderCommand是一个JSON字符串，内容如下：
 
 {
 	"memberId": "6236609999",
@@ -165,6 +174,8 @@ OrderRepresentation checkout(String orderCommand):
 	]
 }
 ```
+
+`OrderRepresentation` 为订单凭证类，可参看 test/output/order-representation.spec.js 测试文件了解该类的用法。
 
 程序已经给出了一个上例的测试代码，用于验证程序的正确性。
 
