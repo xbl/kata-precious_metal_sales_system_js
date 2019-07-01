@@ -1,5 +1,7 @@
 {
+  "orderId": "0000001",
   "memberId": "6236609999",
+  "createTime": "2019-07-02 15:00:00",
   "items": [
     {
       "product": "001001",
@@ -15,13 +17,13 @@
     },
     {
       "product": "002003",
-      "amount": 2
+      "amount": 5
     }
   ],
   "payments": [
     {
-      "type": "账户余额",
-      "amount": 11612.00
+      "type": "余额支付",
+      "amount": 9860.00
     }
   ],
   "discountCards": [
