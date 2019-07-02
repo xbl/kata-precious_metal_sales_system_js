@@ -183,7 +183,6 @@ String checkout(String orderCommand):
 * 不考虑并发
 
 
-如果你本地是Java 8，可以将`pom.xml`中的`maven.compiler.source`和`maven.compiler.target` 改成1.8
 
 ## 项目安装
 
